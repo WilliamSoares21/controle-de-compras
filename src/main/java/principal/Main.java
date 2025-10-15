@@ -13,7 +13,7 @@ import loja.Catalogo;
 public class Main {
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
-
+    Cartao cartao = new Cartao(1000.0);
     Catalogo catalogo = new Catalogo();
     List<Compra> carrinhoDeCompras = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class Main {
           opcaoProduto = scan.nextInt();
 
           if (opcaoProduto == 0)
-            break;
+            break; // Sai do loop de produtos
 
           Produto produtoComprado = catalogo.getProduto(setorEscolhido, opcaoProduto - 1);
 
@@ -58,6 +58,41 @@ public class Main {
     }
 
     System.out.println("Finalizando a compra...");
+
+    System.out.println("Finalizando a compra...");
+    System.out.println("************************\n");
+
+    // Calcula o total do carrinho
+    double totalDaCompra = 0.0;
+
+    for (Compra compra : carrinhoDeCompras) {
+      System.out.println(compra);
+      totalDaCompra += compra.getValor();
+    }
+    System.out.println("Valor total da compra: R$" + totalDaCompra);
+    System.out.println("Saldo do cartão: R$" + cartao.getSaldo());
+    System.out.println("\n************************");
+
+    // Validar a compra com o cartão
+    if (cartao.pagar(totalDaCompra)) {
+      System.out.println("Compra realizada com sucesso!");
+      System.out.println("************************");
+
+      // Usando o comparator para ordenar a lista pelo valor de cada compra
+      carrinhoDeCompras.sort(java.util.Comparator.comparing(Compra::getValor));
+
+      System.out.println("Compras realizadas");
+      for (Compra compra : carrinhoDeCompras) {
+        System.out.println(compra.getDescricao() + " - R$" + compra.getValor());
+      }
+    } else {
+      System.out.println("Saldo insuficiente no cartão para realizar a compra.");
+    }
+    System.out.println("\n************************");
+    System.out.println("Saldo final do Cartão: R$" + cartao.getSaldo());
+    System.out.println("************************");
+    scan.close();
+
   }
 
 }
