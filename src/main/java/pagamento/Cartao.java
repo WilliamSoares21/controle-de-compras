@@ -9,6 +9,7 @@ public class Cartao {
     this.saldo = limite;
   }
 
+  // um dia esse metodo já se chamou lanca compra mas alterei para pagar
   public boolean pagar(double valor) {
     if (this.saldo >= valor) {
       this.saldo -= valor;
