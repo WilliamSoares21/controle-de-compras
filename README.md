@@ -77,7 +77,6 @@ src/main/java/
 - **Java 21**: Linguagem de programação principal
 - **Maven**: Gerenciamento de dependências e build
 - **Java Collections**: ArrayList, HashMap, List para gerenciamento de dados
-- **Scanner**: Interface de entrada de dados via terminal
 
 ## 📦 Pré-requisitos
 
